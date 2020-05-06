@@ -5,3 +5,9 @@
 # Display 'Hello'
 
 echo 'Hello'
+
+uptime
+
+WORD='John'
+
+echo $WORD
