@@ -42,3 +42,4 @@ echo "${WORD}${ENDING} is fun!"
 # Reassign value to ENDING
 ENDING='s'
 echo "You are going to write many ${WORD}${ENDING} in this class!"
+
