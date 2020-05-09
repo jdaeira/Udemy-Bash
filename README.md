@@ -18,5 +18,12 @@ ${?} = stores the last executed command
 
 #### Section 4: Password Generation and Shell Script Arguments
 ````
-
+$(( (RANDOM % 10) + 1 )) : generate random number between 1 - 10
+echo $PATH : prints out what the PATH is
+export PATH="$HOME/bin:$PATH" : add this line to the .bashrc or .zshrc to add directory to PATH
+${?} : check to see the exit code for the last command
+${0} : is the first argument on command line
+${#} : is the number of parameters on the command line
+${@} : expands the positional parameters (kind of like an array)
+${*} : treats everything on the command line as 1 argument
 ````
