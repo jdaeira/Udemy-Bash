@@ -1,7 +1,7 @@
 # Udemy Bash Course
 ## Notes and Scripts from Udemy Bash Scripting Course
 
-#### Section 3: User and Account Creation - Shell Scripting Project 1
+#### Section 3: User and Account Creation - Project 1
 ````
 to store a command in a variable use parenthesis 
 $(id -un) or `id -un` (older style syntax)
@@ -16,7 +16,7 @@ exit status 0 means program executed successfully
 ${?} = stores the last executed command
 ````
 
-#### Section 4: Password Generation and Shell Script Arguments
+#### Section 4: Password Generation and Shell Script Arguments - Project 2
 ````
 $(( (RANDOM % 10) + 1 )) : generate random number between 1 - 10
 echo $PATH : prints out what the PATH is
@@ -26,4 +26,7 @@ ${0} : is the first argument on command line
 ${#} : is the number of parameters on the command line
 ${@} : expands the positional parameters (kind of like an array)
 ${*} : treats everything on the command line as 1 argument
+shift: removes the top element of ${1}
 ````
+
+#### Section 5: Linux Programming Conventions - Project 3
