@@ -38,6 +38,7 @@ shift: removes the top element of ${1}
 1 : STDOUT
 2 : STDERR
 & : contains both STDOUT and STDERR
+&> /dev/null : Disregards both STDOUT and STDERR
 ````
 
 #### Section 6: Parsing Command Line Options - Project 4
