@@ -30,3 +30,17 @@ shift: removes the top element of ${1}
 ````
 
 #### Section 5: Linux Programming Conventions - Project 3
+````
+> : STDOUT
+< : STDIN
+>> : Append to a file
+0 : STDIN
+1 : STDOUT
+2 : STDERR
+& : contains both STDOUT and STDERR
+````
+
+#### Section 6: Parsing Command Line Options - Project 4
+````
+
+````
