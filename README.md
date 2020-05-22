@@ -39,9 +39,10 @@ shift: removes the top element of ${1}
 2 : STDERR
 & : contains both STDOUT and STDERR
 &> /dev/null : Disregards both STDOUT and STDERR
+>&2 : redirects STDOUT and STDERR
 ````
 
 #### Section 6: Parsing Command Line Options - Project 4
 ````
-
+*) : is a catch all that catches anything else not entered
 ````
