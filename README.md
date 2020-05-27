@@ -45,4 +45,7 @@ shift: removes the top element of ${1}
 #### Section 6: Parsing Command Line Options - Project 4
 ````
 *) : is a catch all that catches anything else not entered
+local command can only be used inside a function
+readonly : makes the variable unchangeable or unmodifiable
+logger : /var/log/syslog for Ubuntu
 ````
