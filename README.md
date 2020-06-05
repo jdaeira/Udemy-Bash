@@ -48,4 +48,16 @@ shift: removes the top element of ${1}
 local command can only be used inside a function
 readonly : makes the variable unchangeable or unmodifiable
 logger : /var/log/syslog for Ubuntu
+OPTARG : contains the vatiable for the argument
+userdel - r : removes user and files in the home directory
+id -u : gets the USERID of the user. Be careful removing a USERID lower than 1000
+tar -cvf catvideos.tar catvideos : creates and archive of the catvidoes directory
+tar -tf catvideos.tar : can see what's inside the archive
+tar -xvf catvideos.tar : to extract the contents of catvideos.tar
+gzip catvideo.tar : to gzip a folder
+gunzip catvideo.tar.gz : to unzip the folder
+tar -zcvf catvideos.tar catvideos : creates and compresses a archive of the catvidoes directory
+tar -zxvf catvideos.tar : need the -z to see the contents of compressed catvideos.tar
+sudo chage -E 0 woz : expire the "woz" account
+sudo chage -E -1 woz : to re-enable the account
 ````
