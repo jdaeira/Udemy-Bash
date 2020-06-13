@@ -49,7 +49,7 @@ local command can only be used inside a function
 readonly : makes the variable unchangeable or unmodifiable
 logger : /var/log/syslog for Ubuntu
 OPTARG : contains the vatiable for the argument
-userdel - r : removes user and files in the home directory
+userdel -r : removes user and files in the home directory
 id -u : gets the USERID of the user. Be careful removing a USERID lower than 1000
 tar -cvf catvideos.tar catvideos : creates and archive of the catvidoes directory
 tar -tf catvideos.tar : can see what's inside the archive

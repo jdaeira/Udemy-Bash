@@ -18,7 +18,7 @@ then
 fi
 
 # Check if a User exists
-while getopts dra: OPTION
+while getopts :dra OPTION
 do 
     case ${OPTION} in
         d) 
@@ -41,32 +41,75 @@ done
 shift "$(( OPTIND - 1 ))"
 
 
-# Check UID
-UID_NUM=$(id -u ${1})
-
-if [[ "${UID_NUM}" -lt 1000 ]]
+# Checks to see if a username was entered
+if [[ "${#}" -eq 0 ]]
 then
-    echo "That account can't be disabled"
-    exit 1
-else
-    chage -E 0 ${1}
-    echo "${1} account was disabled"
-fi
-
-# Disable accounts
-echo "${#}"
-
-
-
-# Check to see if the archive directory exists
-DIR="/archives"
-
-if [[ -d "${DIR}" ]]
-then
-    echo "${DIR} directory exists"
-else 
-    echo "${DIR} directory not found"
+    echo "You must enter at least a username"
+    usage
     exit 1
 fi
+
+
+for USER_NAME in ${@}
+do
+    # Check to see if the UID of the user is at least 1000
+    echo "Processing user: ${USER_NAME}"
+    UID_NUM=$(id -u ${USER_NAME})
+
+    if [[ "${UID_NUM}" -lt 1000 ]]
+    then
+        echo "That account can't be disabled"
+        exit 1
+    else
+        chage -E 0 ${USER_NAME}
+        #echo "${USER_NAME} account was disabled"
+    fi
+
+    # Archives the Users home directory if the option is selected
+    if [[ "${ARCHIVE}" = "true" ]]
+    then 
+        # Check to see if the archive directory exists
+        DIR="/archives"
+        if [[ -d "${DIR}" ]]
+        then
+            sudo tar -cf ${USER_NAME}".tar" "/home/${USER_NAME}" &> /dev/null
+            mv ${USER_NAME}".tar" /${DIR}
+            echo "Creating /archive directory."
+            echo "Archiving /home/${USER_NAME} to /archive/${USER_NAME}".tar" "
+        else 
+            sudo mkdir ${DIR}
+            sudo tar -cf ${USER_NAME}".tar" "/home/${USER_NAME}" &> /dev/null
+            mv ${USER_NAME}".tar" /${DIR}
+            echo "Creating /archive directory."
+            echo "Archiving /home/${USER_NAME} to /archive/${USER_NAME}".tar" "    
+        fi
+    fi
+
+    # Deletes the User if the option is slected
+    if [[ "${DELETE}" = "true" ]] && [[ "${REMOVE_HOME}" = "true" ]]
+    then
+        userdel -r "${USER_NAME}" &> /dev/null
+        if [[ "${?}" -eq 0 ]]
+        then
+            echo "The account ${USER_NAME} was deleted."
+            exit 0
+        fi
+    elif [[ "${DELETE}" = "true" ]]
+    then
+        userdel "${USER_NAME}" &> /dev/null
+        if [[ "${?}" -eq 0 ]]
+        then
+            echo "The account ${USER_NAME} was deleted."
+            exit 0
+        fi
+    else
+        chage -E 0 ${USER_NAME}
+        echo "The account ${USERNAMR} was disabled"
+    fi
+
+done
+
+
+
 
 
