@@ -60,16 +60,13 @@ do
     then
         echo "That account can't be disabled"
         exit 1
-    else
-        chage -E 0 ${USER_NAME}
-        #echo "${USER_NAME} account was disabled"
     fi
 
     # Archives the Users home directory if the option is selected
     if [[ "${ARCHIVE}" = "true" ]]
     then 
         # Check to see if the archive directory exists
-        DIR="/archives"
+        DIR="/archive"
         if [[ -d "${DIR}" ]]
         then
             sudo tar -cf ${USER_NAME}".tar" "/home/${USER_NAME}" &> /dev/null
@@ -88,23 +85,24 @@ do
     # Deletes the User if the option is slected
     if [[ "${DELETE}" = "true" ]] && [[ "${REMOVE_HOME}" = "true" ]]
     then
-        userdel -r "${USER_NAME}" &> /dev/null
+        userdel -r ${USER_NAME} &> /dev/null
         if [[ "${?}" -eq 0 ]]
         then
-            echo "The account ${USER_NAME} was deleted."
-            exit 0
+            echo "The account ${USER_NAME} was deleted."            
         fi
     elif [[ "${DELETE}" = "true" ]]
     then
-        userdel "${USER_NAME}" &> /dev/null
+        userdel ${USER_NAME} &> /dev/null
         if [[ "${?}" -eq 0 ]]
         then
-            echo "The account ${USER_NAME} was deleted."
-            exit 0
+            echo "The account ${USER_NAME} was deleted."            
         fi
     else
         chage -E 0 ${USER_NAME}
-        echo "The account ${USERNAMR} was disabled"
+        if [[ "${?}" -eq 0 ]]
+        then
+            echo "The account ${USER_NAME} was disabled."            
+        fi        
     fi
 
 done
