@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Display the usage and exit
 usage() {
     echo "Usage: ${0} [-dra] USER [USERN]" >&2
     echo "Disable a local Linux account."
@@ -56,6 +57,7 @@ do
     echo "Processing user: ${USER_NAME}"
     UID_NUM=$(id -u ${USER_NAME})
 
+    # Make sure the UID of the account is at least 1000
     if [[ "${UID_NUM}" -lt 1000 ]]
     then
         echo "That account can't be disabled"
