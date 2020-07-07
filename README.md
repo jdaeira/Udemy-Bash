@@ -64,5 +64,25 @@ sudo chage -E -1 woz : to re-enable the account
 
 #### Section 7: Transforming Data / Data Processing / Reporting - Project 5
 ````
-
+cut -c 1 /etc/passwd : will cut the first character
+cut -c 1-5 /etc/passwd : will cut characters 1-5
+cut -c -4 /etc/passwd : will display the first four characters
+cut -c 4- /etc/passwd : will display everything from the fourth character onward
+cut -c 1,3,5 /etc/passwd : prints first, third, and fifth character
+echo -e 'one\ttwo\tthree' | cut -f 1 : will print the first field of one from tab seperated data
+echo 'one,two,three' | cut -d ',' -f 1,3 : -d to cut at the commas
+cut -d ':' -f 1,3 /etc/passwd : prints username and UID that is the first and third field
+cut -d ':' -f 1,3 --output-delimiter=',' /etc/passwd : changes the out put delimiter from : to ,
+grep '^first' people.csv : will print out the lines that starts with "first"
+grep 't$' people.csv : this will print the lines that end with the letter "t"
+grep '^first,last$' people.csv : this will print anything that starts with first and ends with last
+grep -v '^first,last$' people.csv : -v will print anything that doesn't start with first or end with last
+awk -F ':' '{print $1, $3}' /etc/passwd : prints the first and third field seperated by ':'
+the comma in the command above is a space in the output
+awk -F ':' -v OFS=',' '{print $1, $3}' /etc/passwd : adds a comma to seperate the output
+awk -F ':' '{print $1 "," $3}' /etc/passwd : does the same thing as the command above
+awk -F ':' '{print $NF}' /etc/passwd : the $NF option prints the last field
+awk -F ':' '{print $(NF - 1)}' /etc/passwd : will print out the field before the last one
+netstat -nutl | grep -v '^Active' | grep -v '^Proto' : won't print the first two lines 
+netstat -nutl | grep ':' | awk '{print $4}' | awk -F ':' '{print $NF}' : prints out only the port numbers
 ````
