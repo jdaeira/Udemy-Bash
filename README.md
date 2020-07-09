@@ -85,4 +85,14 @@ awk -F ':' '{print $NF}' /etc/passwd : the $NF option prints the last field
 awk -F ':' '{print $(NF - 1)}' /etc/passwd : will print out the field before the last one
 netstat -nutl | grep -v '^Active' | grep -v '^Proto' : won't print the first two lines 
 netstat -nutl | grep ':' | awk '{print $4}' | awk -F ':' '{print $NF}' : prints out only the port numbers
+sort /etc/passwd : sorts in alphabetical order
+sort -r /etc/passwd : sorts in reverse
+cut -d ':' -f 3 /etc/passwd | sort -nr : sorts numbers numerically in reverse
+sudo du -h /var | sort -n : sorts the sizes of directory by size
+netstat -nutl | grep ':' | awk '{print $4}' | awk -F ':' '{print $NF}' | sort -nu : sorts unique ports
+netstat -nutl | grep ':' | awk '{print $4}' | awk -F ':' '{print $NF}' | sort -n | uniq -c : use uniq -c when you want to know how many times each line was used
+wc /etc/passwd : first comes the number of lines in the file. Second is the number of words, third is the number of characters
+grep bash /etc/passwd | wc -l : prints number of accounts using bash
+cat /etc/passwd | sort -t ':' -k 3 -n : sorts the third field separated by ':' in numberical order
+
 ````
