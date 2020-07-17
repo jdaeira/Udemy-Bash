@@ -96,3 +96,10 @@ grep bash /etc/passwd | wc -l : prints number of accounts using bash
 cat /etc/passwd | sort -t ':' -k 3 -n : sorts the third field separated by ':' in numberical order
 
 ````
+
+#### Section 8: Network Scripting & Automation of Distributed Systems - Project 6
+````
+
+
+
+````
