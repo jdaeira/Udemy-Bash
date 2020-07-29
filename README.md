@@ -94,7 +94,16 @@ netstat -nutl | grep ':' | awk '{print $4}' | awk -F ':' '{print $NF}' | sort -n
 wc /etc/passwd : first comes the number of lines in the file. Second is the number of words, third is the number of characters
 grep bash /etc/passwd | wc -l : prints number of accounts using bash
 cat /etc/passwd | sort -t ':' -k 3 -n : sorts the third field separated by ':' in numberical order
-
+sed 's/assistant/assistant to the/' manager.txt : displays assistant to the instead of assistant. It doesn't change the original file
+sed 's/MY WIFE/sed/i' love.txt : the "i" flag searches for upper or lower case
+sed 's/my wife/sed/g' love.txt : the "g" flag replaces all instances from multiple instances in a line
+sed 's/my wife/sed/2' love.txt : displays only the second occurence in a line
+sed 's/my wife/sed/g' love.txt > my-new-love.txt : creates a new file with the changes. Original is unaltered.
+sed -i.bak 's/my wife/sed/' love.txt : creates a backup file and changes the original file
+sed '/This/d' love.txt : removes the line that matches "This" in it
+sed '/love/d' love.txt : removes all the lines with the word "love" in it
+sed '/^#/d' config : the ^ is used to match characters that start a line
+sed '/^$/d' config : ^$ matched blank lines
 ````
 
 #### Section 8: Network Scripting & Automation of Distributed Systems - Project 6
