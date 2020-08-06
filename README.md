@@ -104,6 +104,13 @@ sed '/This/d' love.txt : removes the line that matches "This" in it
 sed '/love/d' love.txt : removes all the lines with the word "love" in it
 sed '/^#/d' config : the ^ is used to match characters that start a line
 sed '/^$/d' config : ^$ matched blank lines
+sed '/^#/d ; /^$/d' config : does the same as the last two lines in just one line seperated with ';'
+sed '/^#/d ; /^$/d ; s/apache/httpd/' config : same as above, but also substitutes httpd for apache
+sed -e '/^#/d' -e '/^$/d' -e 's/apache/httpd/' config : same as above, but with the '-e' command
+sed -f script.sed config : created a script with the commands to be used in the config file
+sed '2s/apache/httpd/' config : only changed line 2
+sed '1,3 s/run/execute/' config : only changes lines 1-3
+sed '/#User/,/^$/ s/run/execute/' config : changes run to execute from #User to next blank line
 ````
 
 #### Section 8: Network Scripting & Automation of Distributed Systems - Project 6
@@ -112,3 +119,4 @@ sed '/^$/d' config : ^$ matched blank lines
 
 
 ````
+
